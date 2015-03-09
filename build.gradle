@@ -1,1 +1,49 @@
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
 
+mainClassName = 'vako.App'
+
+bootRepackage {
+    mainClass = mainClassName
+}
+
+
+idea {
+    project {
+
+        jdkName = '1.8'
+        languageLevel = '1.8'
+
+    }
+}
+
+
+buildscript {
+    repositories {
+        mavenCentral()
+        maven { url "http://repo.spring.io/snapshot" }
+        maven { url "http://repo.spring.io/milestone" }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.2.RELEASE")
+    }
+
+}
+
+repositories {
+    mavenCentral()
+    maven { url "http://nexus.dev.mia.ge/nexus/content/groups/public" }
+    maven { url "https://code.lds.org/nexus/content/groups/main-repo" }
+}
+
+dependencies {
+    compile 'org.hibernate:hibernate-core:4.3.8.Final'
+    compile "org.springframework:spring-context:4.1.4.RELEASE"
+    compile "org.springframework:spring-tx:4.1.4.RELEASE"
+    compile("org.springframework.boot:spring-boot-starter-web:1.2.2.RELEASE")
+    compile "org.springframework:spring-orm:4.1.4.RELEASE"
+    compile 'com.oracle:ojdbc6:11.2.0.3'
+    compile 'commons-dbcp:commons-dbcp:1.4'
+}
